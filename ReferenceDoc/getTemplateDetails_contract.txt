@@ -1,0 +1,154 @@
+http://localhost:6001/template-manager/template/1
+
+
+Response:
+==================
+
+{
+   "tmpltfldfnid": 1,
+   "crtdtmstmp": "2019-03-30T14:57:07.659+0000",
+   "crtdusr": "Ashok",
+   "fldelimchar": " ",
+   "fldesc": "A Test Template",
+   "flfrmttyp": "F",
+   "flname": "TestTemplate",
+   "flrecendpos": 2,
+   "flrecidpos": 1,
+   "flrecstartpos": 1,
+   "ismultirectypes": "Y",
+   "uptmstmp": "",
+   "upusr": "",
+   "tmpltrectypes":    [
+            {
+         "tmpltrectypid": 3,
+         "crtdtmstmp": "2019-03-30T15:04:34.272+0000",
+         "crtdusr": "ashok",
+         "isrectypblank": "N",
+         "rectypdesc": "Participant Demographics",
+         "rectypname": "DG",
+         "uptmstmp": null,
+         "upusr": "",
+         "tmpltflddtls":          [
+                        {
+               "tmpltflddetid": 14,
+               "crtdtmstmp": "2019-03-30T17:55:24.330+0000",
+               "crtdusr": "Ashok",
+               "fldcolpos": 2,
+               "flddatfmt": "",
+               "flddattype": "STRING",
+               "flddesc": "Social Security Number",
+               "fldendpos": 14,
+               "fldname": "SSN",
+               "fldstartpos": 3,
+               "isfldforconv": "Y",
+               "uptmstmp": null,
+               "upusr": ""
+            },
+                        {
+               "tmpltflddetid": 15,
+               "crtdtmstmp": "2019-03-30T17:55:24.330+0000",
+               "crtdusr": "Ashok",
+               "fldcolpos": 3,
+               "flddatfmt": "",
+               "flddattype": "STRING",
+               "flddesc": "First Name",
+               "fldendpos": 40,
+               "fldname": "FNAME",
+               "fldstartpos": 15,
+               "isfldforconv": "Y",
+               "uptmstmp": null,
+               "upusr": ""
+            },
+                        {
+               "tmpltflddetid": 16,
+               "crtdtmstmp": "2019-03-30T17:55:24.330+0000",
+               "crtdusr": "Ashok",
+               "fldcolpos": 4,
+               "flddatfmt": "",
+               "flddattype": "STRING",
+               "flddesc": "Middle Name",
+               "fldendpos": 65,
+               "fldname": "MNAME",
+               "fldstartpos": 41,
+               "isfldforconv": "Y",
+               "uptmstmp": null,
+               "upusr": ""
+            },
+                        {
+               "tmpltflddetid": 17,
+               "crtdtmstmp": "2019-03-30T17:55:24.330+0000",
+               "crtdusr": "Ashok",
+               "fldcolpos": 5,
+               "flddatfmt": "",
+               "flddattype": "STRING",
+               "flddesc": "Last Name",
+               "fldendpos": 90,
+               "fldname": "LNAME",
+               "fldstartpos": 66,
+               "isfldforconv": "Y",
+               "uptmstmp": null,
+               "upusr": ""
+            },
+                        {
+               "tmpltflddetid": 13,
+               "crtdtmstmp": "2019-03-30T17:55:24.330+0000",
+               "crtdusr": "Ashok",
+               "fldcolpos": 1,
+               "flddatfmt": "",
+               "flddattype": "STRING",
+               "flddesc": "Record Identifier",
+               "fldendpos": 2,
+               "fldname": "RECID",
+               "fldstartpos": 1,
+               "isfldforconv": "Y",
+               "uptmstmp": null,
+               "upusr": ""
+            }
+         ]
+      },
+            {
+         "tmpltrectypid": 4,
+         "crtdtmstmp": "2019-03-30T15:04:34.272+0000",
+         "crtdusr": "ashok",
+         "isrectypblank": "N",
+         "rectypdesc": "Balances",
+         "rectypname": "BL",
+         "uptmstmp": null,
+         "upusr": "",
+         "tmpltflddtls": []
+      },
+            {
+         "tmpltrectypid": 5,
+         "crtdtmstmp": "2019-03-30T15:04:34.272+0000",
+         "crtdusr": "ashok",
+         "isrectypblank": "N",
+         "rectypdesc": "Loans",
+         "rectypname": "LN",
+         "uptmstmp": null,
+         "upusr": "",
+         "tmpltflddtls": []
+      },
+            {
+         "tmpltrectypid": 6,
+         "crtdtmstmp": "2019-03-30T15:04:34.272+0000",
+         "crtdusr": "ashok",
+         "isrectypblank": "N",
+         "rectypdesc": "Mixes",
+         "rectypname": "MX",
+         "uptmstmp": null,
+         "upusr": "",
+         "tmpltflddtls": []
+      },
+            {
+         "tmpltrectypid": 7,
+         "crtdtmstmp": "2019-03-30T15:04:34.272+0000",
+         "crtdusr": "ashok",
+         "isrectypblank": "N",
+         "rectypdesc": "Deferrals",
+         "rectypname": "DF",
+         "uptmstmp": null,
+         "upusr": "",
+         "tmpltflddtls": []
+      }
+   ]
+}

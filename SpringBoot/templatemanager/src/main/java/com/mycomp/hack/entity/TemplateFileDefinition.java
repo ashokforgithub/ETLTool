@@ -1,0 +1,200 @@
+package com.mycomp.hack.entity;
+
+import java.io.Serializable;
+import javax.persistence.*;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.sql.Timestamp;
+import java.util.List;
+
+
+/**
+ * The persistent class for the tmpltfiledefn database table.
+ * 
+ */
+@Entity
+@Table(name="tmpltfiledefn" , schema="hktemplatedb")
+@NamedQuery(name="TemplateFileDefinition.findAll", query="SELECT t FROM TemplateFileDefinition t")
+public class TemplateFileDefinition implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(unique=true, nullable=false)
+	private Long tmpltfldfnid;
+
+	@Column(nullable=false)
+	private Timestamp crtdtmstmp;
+
+	@Column(nullable=false, length=2147483647)
+	private String crtdusr;
+
+	@Column(length=1)
+	private String fldelimchar;
+
+	@Column(length=200)
+	private String fldesc;
+
+	@Column(nullable=false, length=1)
+	private String flfrmttyp;
+
+	@Column(nullable=false, length=100)
+	private String flname;
+
+	private Integer flrecendpos;
+
+	private Integer flrecidpos;
+
+	private Integer flrecstartpos;
+
+	@Column(length=1)
+	private String ismultirectypes;
+
+	@Column(length=2147483647)
+	private String uptmstmp;
+
+	@Column(length=2147483647)
+	private String upusr;
+
+	//bi-directional many-to-one association to TemplateRecordType
+	@OneToMany(mappedBy="tmpltfiledefn")	
+	@JsonManagedReference
+	private List<TemplateRecordType> tmpltrectypes;
+
+	public TemplateFileDefinition() {
+	}
+
+	public Long getTmpltfldfnid() {
+		return this.tmpltfldfnid;
+	}
+
+	public void setTmpltfldfnid(Long tmpltfldfnid) {
+		this.tmpltfldfnid = tmpltfldfnid;
+	}
+
+	public Timestamp getCrtdtmstmp() {
+		return this.crtdtmstmp;
+	}
+
+	public void setCrtdtmstmp(Timestamp crtdtmstmp) {
+		this.crtdtmstmp = crtdtmstmp;
+	}
+
+	public String getCrtdusr() {
+		return this.crtdusr;
+	}
+
+	public void setCrtdusr(String crtdusr) {
+		this.crtdusr = crtdusr;
+	}
+
+	public String getFldelimchar() {
+		return this.fldelimchar;
+	}
+
+	public void setFldelimchar(String fldelimchar) {
+		this.fldelimchar = fldelimchar;
+	}
+
+	public String getFldesc() {
+		return this.fldesc;
+	}
+
+	public void setFldesc(String fldesc) {
+		this.fldesc = fldesc;
+	}
+
+	public String getFlfrmttyp() {
+		return this.flfrmttyp;
+	}
+
+	public void setFlfrmttyp(String flfrmttyp) {
+		this.flfrmttyp = flfrmttyp;
+	}
+
+	public String getFlname() {
+		return this.flname;
+	}
+
+	public void setFlname(String flname) {
+		this.flname = flname;
+	}
+
+	public Integer getFlrecendpos() {
+		return this.flrecendpos;
+	}
+
+	public void setFlrecendpos(Integer flrecendpos) {
+		this.flrecendpos = flrecendpos;
+	}
+
+	public Integer getFlrecidpos() {
+		return this.flrecidpos;
+	}
+
+	public void setFlrecidpos(Integer flrecidpos) {
+		this.flrecidpos = flrecidpos;
+	}
+
+	public Integer getFlrecstartpos() {
+		return this.flrecstartpos;
+	}
+
+	public void setFlrecstartpos(Integer flrecstartpos) {
+		this.flrecstartpos = flrecstartpos;
+	}
+
+	public String getIsmultirectypes() {
+		return this.ismultirectypes;
+	}
+
+	public void setIsmultirectypes(String ismultirectypes) {
+		this.ismultirectypes = ismultirectypes;
+	}
+
+	public String getUptmstmp() {
+		return this.uptmstmp;
+	}
+
+	public void setUptmstmp(String uptmstmp) {
+		this.uptmstmp = uptmstmp;
+	}
+
+	public String getUpusr() {
+		return this.upusr;
+	}
+
+	public void setUpusr(String upusr) {
+		this.upusr = upusr;
+	}
+	
+	public List<TemplateRecordType> getTmpltrectypes() {
+		return this.tmpltrectypes;
+	}
+
+	public void setTmpltrectypes(List<TemplateRecordType> tmpltrectypes) {
+		this.tmpltrectypes = tmpltrectypes;
+	}
+
+	public TemplateRecordType addTmpltrectype(TemplateRecordType tmpltrectype) {
+		getTmpltrectypes().add(tmpltrectype);
+		tmpltrectype.setTmpltfiledefn(this);
+
+		return tmpltrectype;
+	}
+
+	public TemplateRecordType removeTmpltrectype(TemplateRecordType tmpltrectype) {
+		getTmpltrectypes().remove(tmpltrectype);
+		tmpltrectype.setTmpltfiledefn(null);
+
+		return tmpltrectype;
+	}
+
+}

@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Source to Target Mapping</title>
+    <script type="text/javascript" src="../JS/jquery.js"></script>
+    <script type="text/javascript" src="../JS/jquery-1.10.2.min.js"></script>        
+    <script type="text/javascript" src="../JS/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../DataTables/datatables.js"></script> 
+    <link rel="Stylesheet" type="text/css" href="../DataTables/datatables.css" />
+    <link rel="Stylesheet" type="text/css" href="../CSS/bootstrap.min.css" />
+    <link rel="Stylesheet" type="text/css" href="../CSS/SrcTrgtMapping.css" />
+</head>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#dataTable').DataTable({
+            "paging": false,
+            "ordering": false,
+            "info": false,
+            "searching":false,
+            "columnDefs": [
+            { "width": "50%", "targets": "_all" },
+            { "className": "dt-center", "targets": "_all"}]
+        });
+    });
+</script>
+<body>
+    <div class="body">
+        <div class="container frm">
+            <form enctype="multipart/form-data">
+                <div class="row">            
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4" style="font-weight:bold">Project Name</div>
+                    <div class="col-md-4">Project1</div>
+                    <div class="col-md-2"></div>            
+                </div>
+                <br />
+                <div class="row">            
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4" style="font-weight:bold">Template Name</div>
+                    <div class="col-md-4">IBM Finance</div>
+                    <div class="col-md-2"></div>            
+                </div>            
+                <br />
+                <div class="row">            
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4" style="font-weight:bold">Target Record Type</div>
+                    <div class="col-md-4">
+                        <input class="field" type="text" placeholder="Demographics" />
+                    </div>
+                    <div class="col-md-2"></div>            
+                </div>
+                <br />
+                <br />
+                <div class="row">            
+                    <div class="col-md-1"></div>
+                    <div class="col-md-8">
+                        <table id="dataTable">
+                          <thead>
+                              <tr>
+                                <th>Source Field</th>
+                                <th>Target Field</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                <td>SocialSecurityNumber</td>
+                                <td>SSN</td>
+                              </tr>
+                              <tr>
+                                <td>Title+FirstName+LastName</td>
+                                <td>FullName</td>
+                              </tr>
+                              <tr>
+                                <td>Address(FirstLine)</td>
+                                <td>AddressLine1</td>
+                              </tr>
+                              <tr>
+                                <td>Address(SecondLine)</td>
+                                <td>AddressLine2</td>
+                              </tr>
+                              <tr>
+                                <td>Phone</td>
+                                <td>Phone</td>
+                              </tr>
+                          </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-2"></div>            
+                </div>
+                <br />
+                <div class="row">            
+                    <div class="col-md-2"></div>
+                    <div class="col-md-3" style="padding-left:50px">
+                        <input class="btn" type="reset" value="Reset" />
+                    </div>
+                    <div class="col-md-3" style="padding-left:0%">
+                        <input class="btn" type="submit" value="Convert" />
+                    </div>
+                    <div class="col-md-4"></div>            
+                </div>
+            </form>
+            <br />
+            <div class="row">            
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4" style="font-weight:bold">Target Record Type</div>
+                    <a class="col-md-4">Download Link
+                    </a>
+                    <div class="col-md-2"></div>            
+                </div>
+         </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Projects</title>
+    <script type="text/javascript" src="../JS/jquery.js"></script>
+    <script type="text/javascript" src="../JS/jquery-1.10.2.min.js"></script>        
+    <script type="text/javascript" src="../JS/bootstrap.min.js"></script>
+    <link rel="Stylesheet" type="text/css" href="../CSS/bootstrap.min.css" />
+    <link rel="Stylesheet" type="text/css" href="../CSS/DataUpload.css" />
+	
+    <script type="text/javascript">
+        $(document).ready(function () {
+        	$.ajax({
+        		   url: 'http://10.81.41.11:6301/projectDetails/getAllProjects',
+        		   success: function(result){
+        			   var htmlText = '';
+        			   for (var key in result) {
+        	                htmlText += '<li>';
+        	                htmlText += '<a href="TemplateUpload.htm" onclick=load("';
+        					htmlText +=result[key];
+        					htmlText +='")>';
+        					htmlText +=result[key];
+        					htmlText +='</a>';
+        	                htmlText += '</li><br/>';
+        	            }
+        	            document.getElementById("lst").innerHTML = htmlText;
+        	  }});            
+        });
+
+    </script> 
+    <script type="text/javascript">
+
+        function load(proj) {
+            if (typeof (Storage) !== "undefined") {
+                // Store
+                localStorage.setItem("ProjName", proj);
+                // Retrieve
+                //alert(localStorage.getItem("ProjName"));
+            } else {
+                alert("Sorry, your browser does not support Web Storage...");
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="body">
+    <h1 style="position:relative;padding-left:35%">Projects</h1>
+    <ul id="lst" class= "lst" style="list-style-type:disc;">
+		<li><a href="TemplateUpload.htm" onclick="load('Project1')">Project1</a></li>
+		<br/>
+		<li><a href="TemplateUpload.htm" onclick="load('Project2')">Project2</a></li>
+		<br/>
+		<li><a href="TemplateUpload.htm" onclick="load('Project3')">Project3</a></li>
+		<br/>
+    </ul>
+</div>
+</body>
+</html>

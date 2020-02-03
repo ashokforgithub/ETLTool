@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Template Upload</title>
+	<script type="text/javascript" src="../JS/jquery-3.3.1.js"></script>  
+    <script type="text/javascript" src="../JS/jquery.js"></script>
+    <script type="text/javascript" src="../JS/jquery-1.10.2.min.js"></script>        
+    <script type="text/javascript" src="../JS/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../JS/jquery-ui.js"></script>
+    <link rel="Stylesheet" type="text/css" href="../CSS/bootstrap.min.css" />
+    <link rel="Stylesheet" type="text/css" href="../CSS/DataUpload.css" />    
+	<script type="text/javascript">		
+	    var projName = localStorage.getItem("ProjName");
+	    $(document).ready(function () {
+	    	$.ajax({
+     		   url: 'http://10.81.41.11:6001/template-manager/getAllTemplate',
+     		   success: function(result){
+     			   var dropDwn = '<option></option>';
+     			   for (var key in result) {
+     				  	dropDwn += '<option>';
+     				 	dropDwn += result[key];
+     					dropDwn += '</option>';
+     	            }
+     	            document.getElementById("dropDown").innerHTML = dropDwn;
+     	  }}); 
+	    	$( function() {
+	    	    $( "#sortable1, #sortable2" ).sortable({
+	    	      connectWith: ".connectedSortable"
+	    	    }).disableSelection();
+	    	  } );
+	    	
+	    	
+	    	$.ajax({
+	     		   url: 'http://10.81.41.11:6501/target-source-mapping/template/1',
+	     		   success: function(result){
+					var htmlText= '';
+					var htmlText1= '';
+					document.getElementById("tmpltName").innerHTML ="IBM_TEMPLATE"; 
+	     			//htmlText+='<li class="ui-state-default">';
+					//htmlText+=result[0].srcfldid;
+					//htmlText+='</li>';
+					for(var key in result){
+						htmlText+='<li class="ui-state-default">';
+						htmlText+=result[key].srcfldname;
+						htmlText+='</li>';
+						htmlText1+='<li class="ui-state-default">';
+						htmlText1+=result[key].trgfldname;
+						htmlText1+='</li>';
+					}
+					/* htmlText+='<li class="ui-state-default">';
+					htmlText+=result[0].srcfldname;
+					htmlText+='</li>';*/
+					document.getElementById("sortable1").innerHTML = htmlText;
+					//htmlText1+='<li class="ui-state-default">';
+					//htmlText1+=result[0].trgfldid;
+					//htmlText1+='</li>';
+					/* htmlText1+='<li class="ui-state-default">';
+					htmlText1+=result[0].trgfldname;
+					htmlText1+='</li>'; */
+					document.getElementById("sortable2").innerHTML = htmlText1;
+	     		  }});
+			
+	        document.getElementById('projectName2').innerHTML = projName;
+	        document.getElementById('template').style.display = 'none';
+	        document.getElementById('data').style.display = 'block';
+	        document.getElementById('srcTrgt').style.display = 'none';
+	        document.getElementById("but2").className = "active";
+	    });
+	    function mapping(){
+	    	$.ajax({
+	     		   url: 'http://10.81.40.42:6001/template-manager/getAllTemplate',
+	     		   success: function(result){			
+					var htmlText= '';
+					for (var key in json) {
+		                htmlText += '<tr><td>';
+		                htmlText += json[key].src;
+		                htmlText += '</td><td>';
+						htmlText += json[key].trgt;
+						htmlText += '</td>';				
+         		}
+	     		  }});
+    	}
+	    function template() {
+	        document.getElementById('projectName1').innerHTML = projName;
+	        document.getElementById('template').style.display = 'block';
+	        document.getElementById('data').style.display = 'none';
+	        document.getElementById('srcTrgt').style.display = 'none';
+	        document.getElementById("but1").className = "active";
+	        document.getElementById("but2").className = "";
+	        document.getElementById("but3").className = "";
+	    }
+	   function data() {
+	        document.getElementById('projectName2').innerHTML = projName;
+			document.getElementById('template').style.display = 'none';
+			document.getElementById('srcTrgt').style.display = 'none';
+			document.getElementById('data').style.display = 'block';
+			document.getElementById("but2").className="active";
+			document.getElementById("but1").className="";
+			document.getElementById("but3").className="";
+		}		
+		function srcTrgt() {
+		    document.getElementById('projectName3').innerHTML = projName;
+			document.getElementById('template').style.display = 'none';
+			document.getElementById('data').style.display = 'none';
+			document.getElementById('srcTrgt').style.display = 'block';
+			document.getElementById("but1").className="";
+			document.getElementById("but2").className="";
+			document.getElementById("but3").className="active";
+		}		
+		
+	</script>
+</head>
+<body>
+    <div class="body">	
+        <div class="container frm">	
+			<div class="tab">
+				<button id="but1" onclick="template()">Template Upload</button>
+				<button id="but2" onclick="data()">Data Upload</button>
+				<button id="but3" onclick="srcTrgt()">Source Target Mapping</button>
+			</div>            
+			<div style="border:solid; border-width:1px;width:700px;background: #eeeeee;border-radius:10px;">				
+				<br />
+				<div id="template">	
+                    <form  id="test" enctype="multipart/form-data">				
+						<div class="row">            
+							<div class="col-md-2"></div>
+							<div class="col-md-4" style="font-weight:bold">Project Name</div>
+							<div class="col-md-4" id="projectName1"></div>
+							<div class="col-md-2"></div>           
+						</div>
+						<br />
+						<div id="test2" class="row">            
+							<div class="col-md-2"></div>
+							<div class="col-md-4" style="font-weight:bold">Template Name</div>
+							<div class="col-md-4">
+								<input class="field" type="text" />
+							</div>
+							<div class="col-md-2"></div>            
+						</div>            
+						<br />
+						<div class="row">            
+							<div class="col-md-2"></div>
+							<div class="col-md-4" style="font-weight:bold">Upload File</div>
+							<div class="col-md-4">
+								<input type="file" />
+							</div>
+							<div class="col-md-2"></div>            
+						</div>
+						<br />
+                        <div class="row">            
+                            <div class="col-md-2"></div>
+                            <div class="col-md-4" style="padding-left:10px">
+                                <input class="btn" type="reset" value="Reset" />
+                            </div>
+                            <div class="col-md-2" style="padding-left:0%">
+                                <input class="btn" type="submit" value="Upload" />
+                            </div>
+                            <div class="col-md-4"></div>            
+                        </div>
+                        <br />
+                    </form>		
+				</div>
+				<div id="data" style="padding:16px;">
+                    <form  id="Form1" enctype="multipart/form-data">
+					    <div class="row" style="padding:15px;">            
+						    <div class="col-md-2"></div>
+						    <div class="col-md-4" style="font-weight:bold;">Project Name</div>
+						    <div class="col-md-4" id="projectName2"></div>
+						    <div class="col-md-2"></div>            
+					    </div>
+					    <div class="row" style="padding:10px;">            
+						    <div class="col-md-2"></div>
+						    <div class="col-md-4" style="font-weight:bold">Select Template</div>
+						    <div class="col-md-4">'
+							    <select onchange="mapping()" class="field" id="dropDown" required ></select>
+						    </div>
+						    <div class="col-md-2"></div>            
+					    </div>		    
+					    <div class="row" style="padding:15px;">            
+						    <div class="col-md-2"></div>
+						    <div class="col-md-4" style="font-weight:bold">Upload Data File</div>
+						    <div class="col-md-4">
+							    <input type="file" />
+						    </div>
+						    <div class="col-md-2"></div>            
+					    </div>
+                        <div class="row">            
+                            <div class="col-md-2"></div>
+                            <div class="col-md-4" style="padding-left:10px">
+                                <input class="btn" type="reset" value="Reset" />
+                            </div>
+                            <div class="col-md-2" style="padding-left:0%">
+                                <input class="btn" type="submit" value="Upload" />
+                            </div>
+                            <div class="col-md-4"></div>                                        
+                        </div>
+                        <br />
+                    </form>		
+				</div>
+				
+				<div id="srcTrgt">
+                    <form  id="Form2" enctype="multipart/form-data">
+					    <div class="row">            
+                        <div class="col-md-2"></div>
+                        <div class="col-md-4" style="font-weight:bold">Project Name</div>
+                        <div class="col-md-4" id="projectName3"></div>
+                        <div class="col-md-2"></div>            
+                    </div>
+                    <br />
+                    <div class="row">            
+                        <div class="col-md-2"></div>
+                        <div class="col-md-4" style="font-weight:bold">Template Name</div>
+                        <div class="col-md-4" id="tmpltName"></div>
+                        <div class="col-md-2"></div>            
+                    </div>            
+                    <br />
+                    <div class="row">            
+                        <div class="col-md-2"></div>
+                        <div class="col-md-4" style="font-weight:bold">Target Record Type</div>
+                        <div class="col-md-4">Demographics</div>
+                        <div class="col-md-2"></div>            
+                    </div>
+                    <br />
+                    <br />
+                    <div class="row">            
+                        <div class="col-md-2"></div>
+                        <div class="col-md-4" style="font-weight:bold">Source Field</div>
+                        <div class="col-md-4" style="font-weight:bold">Target Field</div>
+                        <div class="col-md-2"></div>            
+                    </div>
+                    <div class="row">            
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8"> 							                              
+                            <ul id="sortable1" class="connectedSortable">
+  
+							</ul> 
+							<ul id="sortable2" class="connectedSortable">
+							  
+							</ul>
+						    <br />
+                        </div>
+                        <div class="col-md-2"></div>            
+                    </div>
+                    <div class="row">            
+                        <div class="col-md-2"></div>
+                        <div class="col-md-4" style="padding-left:10px">
+                            <input class="btn" type="reset" value="Reset" />
+                        </div>
+                        <div class="col-md-2" style="padding-left:0%">
+                            <input class="btn" type="submit" value="Convert" />
+                        </div>  
+						<div class="col-md-4"></div> 
+					</div>	
+					<br />
+				</form>	
+				<div class="row">            
+					<div class="col-md-3"></div>
+					<div class="col-md-3" style="font-weight:bold">Target Record Type</div>
+					<a class="col-md-3">Download Link</a>
+					<div class="col-md-2"></div>
+				</div>
+			</div>  		
+		</div> 
+		<br/>
+    </div>
+    </div>
+</body>
+</html>
